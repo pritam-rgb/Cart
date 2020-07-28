@@ -30,3 +30,7 @@ body {
   cursor: pointer;
 }
 
+.cartItems{
+  display: flex;
+  flex-direction: column;
+}
