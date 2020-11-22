@@ -2,12 +2,9 @@ import React from 'react';
 import { render } from '@testing-library/react';
 
 const CartItem= (props) => {
-   
-    
-       const{qty,price,item}= props.product;
-       const {product,onClickIncrease,onClickDecrease,onClickDelete}= props;
-          
-        return(
+    const{qty,price,item}= props.product;
+    const {product,onClickIncrease,onClickDecrease,onClickDelete}= props;
+    return(
             <div className='cart-item'>
                 <div className='left-block'>
                     <img alt='' style={styles.image} src={product.image}/>
