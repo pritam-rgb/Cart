@@ -1,30 +1,22 @@
 import React from 'react';
-import { render } from '@testing-library/react';
 import CartItem from './CartItem';
 
-
 const Cart = (props) => {
- 
-        const {products}= props;
-        return(
-            <div className='cartItems'>
-                {products.map((items) => {
-                 return(  
-                < CartItem
-                    product={items} 
-                    onClickIncrease={props.onClickIncrease}
-                    onClickDecrease={props.onClickDecrease}
-                    onClickDelete={props.onClickDelete}
-                    key={items.id}
-                />
-                 )
-            })}
-                
-             
-
-            </div>
-        )
-    
-};
+  const { products } = props;
+  
+  return (
+    <div className="cart">
+      {products.map((product) => (
+        <CartItem
+          key={product.id}
+          product={product}
+          onIncreaseQuantity={props.onIncreaseQuantity}
+          onDecreaseQuantity={props.onDecreaseQuantity}
+          onDeleteProduct={props.onDeleteProduct}
+        />
+        ))}
+    </div>
+  )
+}
 
 export default Cart;

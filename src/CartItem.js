@@ -1,58 +1,48 @@
 import React from 'react';
-import { render } from '@testing-library/react';
 
-const CartItem= (props) => {
-    const{qty,price,item}= props.product;
-    const {product,onClickIncrease,onClickDecrease,onClickDelete}= props;
-    return(
-            <div className='cart-item'>
-                <div className='left-block'>
-                    <img alt='' style={styles.image} src={product.image}/>
-                </div>
-                <div className='right-block'>
-                        <div style={{'color':'#777','fontSize': '25px'}}>Item: {item}</div>
-                        <div style={{'color':'Black','fontSize': '25px'}}>Price: {price}</div>
-                        <div style={{'color':'cyan','fontSize': '25px'}}>Qty: {qty}</div>
-                <div className='cart-item-actions'>
-                        
-                        
-                            {/* Buttons */}
-                        <img 
-                            alt="increase" 
-                            className='action-icons' 
-                            src="https://as1.ftcdn.net/jpg/02/01/58/70/500_F_201587024_jEB8rsvrFtd0jwBF2A7oUnZ2KGYYddmC.jpg"
-                            onClick={() =>  onClickIncrease(product)}
-                        />
-                        <img 
-                            alt="decrease" 
-                            className='action-icons' 
-                            src="https://t4.ftcdn.net/jpg/03/30/24/99/240_F_330249927_k8oy0p4zZqSAdxd1jxlhB0ZPT3fGLpjw.jpg"
-                            onClick={() => onClickDecrease(product)}
-                        />
-                        <img 
-                            alt="delete" 
-                            className='action-icons' 
-                            src="https://t4.ftcdn.net/jpg/01/90/89/15/240_F_190891550_N7uKp2aHE3mOc20dmtDytj7atgvbhdOu.jpg"
-                            onClick={() =>  onClickDelete(product.id)}
-                        />
-                        
+class CartItem extends React.Component {
+  render () {
+    const { qty, price, title } = this.props.product;
+    const { product } = this.props;
 
-                    </div>
-                </div>
+    return (
+      <div className="cart-item">
+        <div className="left-block">
+          <img
+            style={{ height: 110, width: 110, borderRadius: 5, background: '#ccc' }}
+            src={product.img}
+            alt={"Image"}
 
-
-            </div>
-        );
-    
-};
-
-const styles = {
-    image: { 
-        height: 110,
-        width: 110,
-        borderRadius: 8,
-        backgroundColor: '#777'
-    }
-};
+          />
+        </div>
+        <div className="right-block">
+          <div style={{ fontSize: 25 }}> {title} </div>
+          <div style={{ color: '#777' }}>Rs: {price}</div>
+          <div style={{ color: '#777' }}>Qty: {qty}</div>
+          <div className="cart-item-actions">
+            <img 
+              alt="add"
+              src="https://image.flaticon.com/icons/svg/1665/1665578.svg"
+              className="action-icons"
+              onClick={() => this.props.onIncreaseQuantity(product)}
+            />
+            <img
+              alt="minus"
+              src="https://image.flaticon.com/icons/svg/1665/1665612.svg"
+              className="action-icons"
+              onClick={() => this.props.onDecreaseQuantity(product)}
+            />
+            <img
+              alt="delete"
+              src="https://image.flaticon.com/icons/svg/1214/1214428.svg"
+              className="action-icons"
+              onClick={() => this.props.onDeleteProduct(product.id)}
+            />
+          </div>
+        </div>
+      </div>
+    )
+  }
+}
 
 export default CartItem;
