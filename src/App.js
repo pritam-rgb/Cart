@@ -114,11 +114,25 @@ class App extends React.Component {
   handleDeleteProduct = id => {
     const { products } = this.state;
 
-    const items = products.filter(product => product.id !== id);
+    // const items = products.filter(product => product.id !== id);
 
-    this.setState({
-      products: items
-    });
+    
+    // this.setState({
+    //   products: items
+    // });
+
+    const docRef=this.db.collection('products').doc(id);
+
+    docRef
+      .delete()
+      .then(()=>{
+        console.log("Deleted succesfully from database");
+      })
+      .catch((error)=>{
+        console.log("Error: ",error);
+      })
+
+    
   };
 
   getcountOfCartItems = () => {
